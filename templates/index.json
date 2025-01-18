@@ -34,18 +34,20 @@
     "image_text_2": {
       "type": "image_and_text",
       "settings": {
-        "leader_text": "",
-        "header_text": "",
-        "body_text": "",
-        "reverse_order": false
+        "image": "shopify://shop_images/merchant-taking-sale-with-chip-and-swipe-reader.jpg",
+        "leader_text": "Something",
+        "header_text": "Here goes a title",
+        "body_text": "Body text here. Body text here. Body text here. Body text here. Body text here. Body text here. Body text here. Body text here. Body text here. Body text here. Body text here. Body text here. Body text here. Body text here.",
+        "reverse_order": true
       }
     },
     "image_text_3": {
       "type": "image_and_text",
       "settings": {
-        "leader_text": "",
-        "header_text": "",
-        "body_text": "",
+        "image": "shopify://shop_images/city-street-at-night.jpg",
+        "leader_text": "Getting it",
+        "header_text": "Here we have text",
+        "body_text": "Lorem ipsum dolor amet. Lorem ipsum dolor amet. Lorem ipsum dolor amet. Lorem ipsum dolor amet. Lorem ipsum dolor amet. Lorem ipsum dolor amet. Lorem ipsum dolor amet. Lorem ipsum dolor amet. Lorem ipsum dolor amet.",
         "reverse_order": false
       }
     },
