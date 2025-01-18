@@ -51,7 +51,37 @@
     },
     "how_does_it_work": {
       "type": "how_does_it_work",
-      "settings": {}
+      "blocks": {
+        "step_zC6WTC": {
+          "type": "step",
+          "settings": {
+            "step_title": "Order",
+            "step_description": "Order step description goes here. Order step description goes here. Order step description goes here. Order step description goes here. Order step description goes here."
+          }
+        },
+        "step_8njFDc": {
+          "type": "step",
+          "settings": {
+            "step_title": "Shipping",
+            "step_description": "Shipping description goes here. Shipping description goes here. Shipping description goes here. Shipping description goes here."
+          }
+        },
+        "step_9gNz48": {
+          "type": "step",
+          "settings": {
+            "step_title": "Enjoy",
+            "step_description": "Enjoy description goes here and stuff. Enjoy description goes here and stuff. Enjoy description goes here and stuff."
+          }
+        }
+      },
+      "block_order": [
+        "step_zC6WTC",
+        "step_8njFDc",
+        "step_9gNz48"
+      ],
+      "settings": {
+        "title": "How does it work?"
+      }
     }
   },
   "order": [
