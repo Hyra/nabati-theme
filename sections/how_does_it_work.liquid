@@ -1,24 +1,64 @@
 <div class="max-w-5xl mx-auto mt-10 px-5 lg:px-0">
-  <div class="text-center text-peanut-brown font-bannertype text-6xl mb-3 uppercase">How does it work?</div>
+  <div class="text-center text-peanut-brown font-bannertype text-6xl mb-3 uppercase">{{ section.settings.title }}</div>
 
   <div class="grid grid-cols-3 gap-8">
-    <div class="bg-nabati-pink rounded-2xl p-6">
-      <div class="text-bamboo-beige font-p22mackinac text-3xl mb-3">Order</div>
-      <div class="font-rubik text-sm text-coconut-white">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+    {% for block in section.blocks %}
+      <div class="bg-nabati-pink rounded-2xl p-6">
+        <div class="text-bamboo-beige font-p22mackinac text-3xl mb-3">{{ block.settings.step_title }}</div>
+        <div class="font-rubik text-sm text-coconut-white">
+          {{ block.settings.step_description }}
+        </div>
       </div>
-    </div>
-    <div class="bg-nabati-pink rounded-2xl p-6">
-      <div class="text-bamboo-beige font-p22mackinac text-3xl mb-3">Shipping</div>
-      <div class="font-rubik text-sm text-coconut-white">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-      </div>
-    </div>
-    <div class="bg-nabati-pink rounded-2xl p-6">
-      <div class="text-bamboo-beige font-p22mackinac text-3xl mb-3">Enjoy</div>
-      <div class="font-rubik text-sm text-coconut-white">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "How Does It Work",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "How does it work?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title",
+          "default": "Step Title"
+        },
+        {
+          "type": "textarea",
+          "id": "step_description",
+          "label": "Step Description",
+          "default": "Step description goes here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How Does It Work",
+      "blocks": [
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
