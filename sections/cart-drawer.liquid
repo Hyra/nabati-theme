@@ -1,1 +1,45 @@
-{%- render 'cart-drawer' -%}
+<div id="cart-drawer" class="cart-drawer">
+  <div class="cart-drawer-header">
+    <h2>Your Cart</h2>
+    <button class="cart-drawer-close" onclick="closeCartDrawer()">×</button>
+  </div>
+
+  <div id="cart-drawer-content" class="cart-drawer-content">
+    {% if cart.item_count > 0 %}
+      <form action="/cart" method="post" novalidate>
+        {% for item in cart.items %}
+          <div class="cart-item">
+            {% if item.image %}
+              <img src="{{ item.image | img_url: '100x' }}" alt="{{ item.title | escape }}">
+            {% endif %}
+
+            <div class="cart-item-info">
+              <a href="{{ item.url }}">{{ item.title }}</a>
+              <div class="cart-item-price">{{ item.price | money }}</div>
+              <div class="cart-item-quantity">
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+              </div>
+              <button type="button" onclick="removeItem({{ forloop.index }})" class="remove">Remove</button>
+            </div>
+          </div>
+        {% endfor %}
+
+        <div class="cart-footer">
+          <div class="cart-subtotal">Subtotal: {{ cart.total_price | money }}</div>
+          <button type="submit" name="update" class="update-cart">Update Cart</button>
+          <button type="submit" name="checkout" class="checkout">Checkout</button>
+        </div>
+      </form>
+    {% else %}
+      <p>Your cart is empty</p>
+      <a href="/collections/all">Continue shopping</a>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": []
+}
+{% endschema %}

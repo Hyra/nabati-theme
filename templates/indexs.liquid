@@ -1,0 +1,22 @@
+{% section 'hero_new' %}
+{% section 'header' %}
+{% section 'image-text' %}
+{% section 'image-text' %}
+{% section 'image-text' %}
+{% comment %}
+  {% section 'menu' %}
+
+  <hr>
+
+  {% for product in collections.all.products %}
+    {{ product.title -}}
+    <br>
+    {{ product.price }}
+    {% comment %} Add to cart button {% endcomment %}
+    <form method="post" action="/cart/add" class="product-form" onsubmit="addToCart(event, this)">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      <input min="1" type="number" id="quantity" name="quantity" value="1">
+      <input type="submit" value="Add to cart" class="btn">
+    </form>
+  {% endfor %}
+{% endcomment %}

@@ -1,0 +1,32 @@
+<div class="h-screen p-[25px]">
+  <header class="relative w-full h-full bg-white rounded-3xl p-10 overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 flex">
+      <!-- Solid color (2/5th of the width) -->
+      <div class="w-2/5 bg-[#FD2B53]"></div>
+      <!-- Background image (3/5th of the width) -->
+      <div
+        class="w-3/5 bg-cover bg-center"
+        style="background-image: url('https://img.freepik.com/premium-photo/lavish-indonesian-rijsttafel-spread_961875-395046.jpg?w=2000');"
+      ></div>
+    </div>
+    <!-- Content -->
+    <div class="relative max-w-5xl mx-auto h-full flex items-end pb-[100px]">
+      <div class="absolute left-0 top-0">
+        <img src="{{ 'nabati_big.png' | asset_url }}" alt="Nabati" width="150" height="40">
+      </div>
+      <div class="text-white">
+        <div class="font-bannertype text-5xl text-[#471313] uppercase">Authentic taste</div>
+        <div class="font-bannertype text-7xl text-[#FBE9CE] uppercase">Plantbased</div>
+        <div class="font-bannertype text-7xl text-[#FBE9CE] uppercase">Indonesian Food.</div>
+        <div class="font-bannertype text-5xl text-[#471313] uppercase">Rooted in flavor</div>
+        <div class="mt-6 flex space-x-4">
+          <button class="bg-black text-white font-bold py-2 px-4 rounded shadow-lg">See products</button>
+          <button class="bg-white text-black font-bold py-2 px-4 border border-black rounded shadow-lg">
+            About us
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
