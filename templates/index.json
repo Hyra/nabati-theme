@@ -1,26 +1,66 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-        "hero_new": {
-          "type": "hero_new"
-        },
-        "header": {
-          "type": "header"
-        },
-        "image_text_1": {
-          "type": "image_and_text"
-        },
-        "products": {
-          "type": "products"
-        },
-        "image_text_2": {
-            "type": "image_and_text"
-        },
-        "image_text_3": {
-            "type": "image_and_text"
-        },
-        "how_does_it_work": {
-            "type": "how_does_it_work"
-        }
+  "sections": {
+    "hero_new": {
+      "type": "hero_new",
+      "settings": {}
     },
-    "order": ["hero_new", "header", "image_text_1", "products", "image_text_2", "image_text_3", "how_does_it_work"]
-  }
+    "header": {
+      "type": "header",
+      "settings": {}
+    },
+    "image_text_1": {
+      "type": "image_and_text",
+      "settings": {
+        "image": "shopify://shop_images/close-up-of-a-bao-bun-on-a-wooden-table.jpg",
+        "leader_text": "Explained",
+        "header_text": "Some header",
+        "body_text": "Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text. Dit is de body text.",
+        "reverse_order": false
+      }
+    },
+    "products": {
+      "type": "products",
+      "settings": {}
+    },
+    "image_text_2": {
+      "type": "image_and_text",
+      "settings": {
+        "leader_text": "",
+        "header_text": "",
+        "body_text": "",
+        "reverse_order": false
+      }
+    },
+    "image_text_3": {
+      "type": "image_and_text",
+      "settings": {
+        "leader_text": "",
+        "header_text": "",
+        "body_text": "",
+        "reverse_order": false
+      }
+    },
+    "how_does_it_work": {
+      "type": "how_does_it_work",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero_new",
+    "header",
+    "image_text_1",
+    "products",
+    "image_text_2",
+    "image_text_3",
+    "how_does_it_work"
+  ]
+}
