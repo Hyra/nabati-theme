@@ -594,18 +594,6 @@ video {
   top: 60px;
 }
 
-.top-10 {
-  top: 2.5rem;
-}
-
-.top-5 {
-  top: 1.25rem;
-}
-
-.z-50 {
-  z-index: 50;
-}
-
 .order-last {
   order: 9999;
 }
@@ -645,16 +633,16 @@ video {
   margin-top: 0.5rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .mt-6 {
   margin-top: 1.5rem;
 }
 
 .mt-\[-75px\] {
   margin-top: -75px;
-}
-
-.mt-4 {
-  margin-top: 1rem;
 }
 
 .flex {
@@ -741,16 +729,12 @@ video {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.flex-row {
-  flex-direction: row;
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -785,10 +769,6 @@ video {
   justify-content: space-between;
 }
 
-.gap-12 {
-  gap: 3rem;
-}
-
 .gap-16 {
   gap: 4rem;
 }
@@ -813,18 +793,16 @@ video {
   margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
-.space-y-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
 }
 
 .rounded-3xl {
@@ -837,14 +815,6 @@ video {
 
 .rounded-lg {
   border-radius: 0.5rem;
-}
-
-.rounded-xl {
-  border-radius: 0.75rem;
-}
-
-.rounded-2xl {
-  border-radius: 1rem;
 }
 
 .rounded-l-3xl {
@@ -880,19 +850,13 @@ video {
   background-color: FD2B53;
 }
 
+.bg-\[FFF2DC\] {
+  background-color: FFF2DC;
+}
+
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
-}
-
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.bg-bamboo-beige {
-  --tw-bg-opacity: 1;
-  background-color: rgb(241 227 188 / var(--tw-bg-opacity, 1));
 }
 
 .bg-nabati-pink {
@@ -900,13 +864,9 @@ video {
   background-color: rgb(253 43 83 / var(--tw-bg-opacity, 1));
 }
 
-.bg-\[\#FFF2DC\] {
+.bg-white {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 242 220 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[FFF2DC\] {
-  background-color: FFF2DC;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
 .bg-dotted {
@@ -929,6 +889,10 @@ video {
   padding: 2.5rem;
 }
 
+.p-6 {
+  padding: 1.5rem;
+}
+
 .p-8 {
   padding: 2rem;
 }
@@ -937,17 +901,14 @@ video {
   padding: 25px;
 }
 
-.p-5 {
-  padding: 1.25rem;
-}
-
-.p-6 {
-  padding: 1.5rem;
-}
-
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .px-6 {
@@ -960,40 +921,13 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 }
 
-.py-0 {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
 .pb-\[100px\] {
   padding-bottom: 100px;
-}
-
-.pt-5 {
-  padding-top: 1.25rem;
-}
-
-.pt-0 {
-  padding-top: 0px;
-}
-
-.pt-2 {
-  padding-top: 0.5rem;
 }
 
 .text-center {
@@ -1014,6 +948,11 @@ video {
 
 .font-serif {
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .text-4xl {
@@ -1058,16 +997,6 @@ video {
   line-height: 1.75rem;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
 .font-bold {
   font-weight: 700;
 }
@@ -1095,14 +1024,29 @@ video {
   color: FD2B53;
 }
 
+.text-bamboo-beige {
+  --tw-text-opacity: 1;
+  color: rgb(241 227 188 / var(--tw-text-opacity, 1));
+}
+
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
+.text-coconut-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+}
+
+.text-peanut-brown {
+  --tw-text-opacity: 1;
+  color: rgb(71 1 1 / var(--tw-text-opacity, 1));
 }
 
 .text-red-700 {
@@ -1116,26 +1060,6 @@ video {
 }
 
 .text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.text-nabati-pink {
-  --tw-text-opacity: 1;
-  color: rgb(253 43 83 / var(--tw-text-opacity, 1));
-}
-
-.text-peanut-brown {
-  --tw-text-opacity: 1;
-  color: rgb(71 1 1 / var(--tw-text-opacity, 1));
-}
-
-.text-bamboo-beige {
-  --tw-text-opacity: 1;
-  color: rgb(241 227 188 / var(--tw-text-opacity, 1));
-}
-
-.text-coconut-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
@@ -1169,7 +1093,7 @@ body {
 @font-face {
   font-family: 'BannerType2';
 
-  src: url('fonts/bannertype2.woff') format('woff');
+  src: url('{{ "bannertype2.woff" | asset_url }}') format('woff');
 
   font-weight: normal;
 
@@ -1179,8 +1103,8 @@ body {
 @font-face {
   font-family: 'p22_mackinac_probold';
 
-  src: url('fonts/mackinac-bold-webfont.woff2') format('woff2'),
-    url('fonts/mackinac-bold-webfont.woff') format('woff');
+  src: url('{{ "mackinac-bold-webfont.woff2" | asset_url }}') format('woff2'),
+    url('{{ "mackinac-bold-webfont.woff" | asset_url }}') format('woff');
 
   font-weight: normal;
 
@@ -1190,8 +1114,8 @@ body {
 @font-face {
   font-family: 'Rubik';
 
-  src: url('fonts/rubik/Rubik-BoldItalic.woff2') format('woff2'),
-        url('fonts/rubik/Rubik-BoldItalic.woff') format('woff');
+  src: url('{{ "Rubik-BoldItalic.woff2" | asset_url }}') format('woff2'),
+        url('{{ "Rubik-BoldItalic.woff" | asset_url }}') format('woff');
 
   font-weight: bold;
 
@@ -1203,8 +1127,8 @@ body {
 @font-face {
   font-family: 'Rubik';
 
-  src: url('fonts/rubik/Rubik-Regular.woff2') format('woff2'),
-        url('fonts/rubik/Rubik-Regular.woff') format('woff');
+  src: url('{{ "Rubik-Regular.woff2" | asset_url }}') format('woff2'),
+        url('{{ "Rubik-Regular.woff" | asset_url }}') format('woff');
 
   font-weight: normal;
 
@@ -1216,8 +1140,8 @@ body {
 @font-face {
   font-family: 'Rubik';
 
-  src: url('fonts/rubik/Rubik-BlackItalic.woff2') format('woff2'),
-        url('fonts/rubik/Rubik-BlackItalic.woff') format('woff');
+  src: url('{{ "Rubik-BlackItalic.woff2" | asset_url }}') format('woff2'),
+        url('{{ "Rubik-BlackItalic.woff" | asset_url }}') format('woff');
 
   font-weight: 900;
 
@@ -1229,8 +1153,8 @@ body {
 @font-face {
   font-family: 'Rubik';
 
-  src: url('fonts/rubik/Rubik-MediumItalic.woff2') format('woff2'),
-        url('fonts/rubik/Rubik-MediumItalic.woff') format('woff');
+  src: url('{{ "Rubik-MediumItalic.woff2" | asset_url }}') format('woff2'),
+        url('{{ "Rubik-MediumItalic.woff" | asset_url }}') format('woff');
 
   font-weight: 500;
 
@@ -1242,8 +1166,8 @@ body {
 @font-face {
   font-family: 'Rubik';
 
-  src: url('fonts/rubik/Rubik-Italic.woff2') format('woff2'),
-        url('fonts/rubik/Rubik-Italic.woff') format('woff');
+  src: url('{{ "Rubik-Italic.woff2" | asset_url }}') format('woff2'),
+        url('{{ "Rubik-Italic.woff" | asset_url }}') format('woff');
 
   font-weight: normal;
 
@@ -1255,8 +1179,8 @@ body {
 @font-face {
   font-family: 'Rubik';
 
-  src: url('fonts/rubik/Rubik-LightItalic.woff2') format('woff2'),
-        url('fonts/rubik/Rubik-LightItalic.woff') format('woff');
+  src: url('{{ "Rubik-LightItalic.woff2" | asset_url }}') format('woff2'),
+        url('{{ "Rubik-LightItalic.woff" | asset_url }}') format('woff');
 
   font-weight: 300;
 
@@ -1268,8 +1192,8 @@ body {
 @font-face {
   font-family: 'Rubik';
 
-  src: url('fonts/rubik/Rubik-Bold.woff2') format('woff2'),
-        url('fonts/rubik/Rubik-Bold.woff') format('woff');
+  src: url('{{ "Rubik-Bold.woff2" | asset_url }}') format('woff2'),
+        url('{{ "Rubik-Bold.woff" | asset_url }}') format('woff');
 
   font-weight: bold;
 
@@ -1281,8 +1205,8 @@ body {
 @font-face {
   font-family: 'Rubik';
 
-  src: url('fonts/rubik/Rubik-Medium.woff2') format('woff2'),
-        url('fonts/rubik/Rubik-Medium.woff') format('woff');
+  src: url('{{ "Rubik-Medium.woff2" | asset_url }}') format('woff2'),
+        url('{{ "Rubik-Medium.woff" | asset_url }}') format('woff');
 
   font-weight: 500;
 
@@ -1294,8 +1218,8 @@ body {
 @font-face {
   font-family: 'Rubik';
 
-  src: url('fonts/rubik/Rubik-Black.woff2') format('woff2'),
-        url('fonts/rubik/Rubik-Black.woff') format('woff');
+  src: url('{{ "Rubik-Black.woff2" | asset_url }}') format('woff2'),
+        url('{{ "Rubik-Black.woff" | asset_url }}') format('woff');
 
   font-weight: 900;
 
@@ -1307,8 +1231,8 @@ body {
 @font-face {
   font-family: 'Rubik';
 
-  src: url('fonts/rubik/Rubik-Light.woff2') format('woff2'),
-        url('fonts/rubik/Rubik-Light.woff') format('woff');
+  src: url('{{ "Rubik-Light.woff2" | asset_url }}') format('woff2'),
+        url('{{ "Rubik-Light.woff" | asset_url }}') format('woff');
 
   font-weight: 300;
 
@@ -1369,35 +1293,13 @@ body {
   color: rgb(127 29 29 / var(--tw-text-opacity, 1));
 }
 
-@media (min-width: 640px) {
-  .sm\:px-5 {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-}
-
 @media (min-width: 768px) {
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .md\:px-5 {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  .md\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
 }
 
 @media (min-width: 1024px) {
-  .lg\:px-5 {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
   .lg\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
