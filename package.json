@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tw": "tailwindcss -i ./style.css -o ./assets/styles.css --watch"
+    "tw": "tailwindcss -i ./style.css -o ./assets/styles.css.liquid --watch"
   },
   "keywords": [],
   "author": "",
