@@ -141,6 +141,15 @@
           headerSection.classList.add('sticky', 'top-0', 'bg-[#FFF2DC]', 'z-50');
         }
       });
+
+      function smoothScroll(element) {
+        const targetElement = document.querySelector(element);
+        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - 200,
+          behavior: 'smooth',
+        });
+      }
     </script>
   </body>
 </html>

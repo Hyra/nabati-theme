@@ -1,4 +1,8 @@
-<div class="max-w-5xl mx-auto px-5 mt-[150px] lg:px-0 products-{{ section.id }}" id="app">
+<div class="max-w-5xl mx-auto px-5 lg:px-0 products-{{ section.id }} products" id="app">
+  <div class="text-center text-nabati-pink font-bannertype text-6xl mt-20 mb-32 uppercase">
+    {{ section.settings.title }}
+  </div>
+
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-24 sm:gap-y-20 lg:g-y-8">
     {% for product in collections.all.products %}
       <div class="bg-[#DECC99] rounded-lg px-6 pb-2 relative flex flex-col items-center h-full">
@@ -76,3 +80,17 @@
     },
   }).mount('#app');
 </script>
+
+{% schema %}
+{
+  "name": "Products Overview",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Ready to eat?"
+    }
+  ]
+}
+{% endschema %}
