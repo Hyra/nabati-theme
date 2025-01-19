@@ -1,57 +1,61 @@
 <div class="max-w-5xl mx-auto px-5 mt-[150px] lg:px-0 products-{{ section.id }}" id="app">
-  <div class="grid grid-cols-4 gap-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-24 sm:gap-y-20 lg:g-y-8">
     {% for product in collections.all.products %}
-      <div class="bg-[#DECC99] rounded-lg px-6 flex flex-col h-full">
-        <div class="flex justify-center mt-[-75px]">
+      <div class="bg-[#DECC99] rounded-lg px-6 pb-2 relative flex flex-col items-center h-full">
+        <!-- Absolutely positioned image so its center is on the card's top edge -->
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
           <img
             src="{{ product.featured_image | image_url: width: 150 }}"
             alt="{{ product.title }}"
             width="150"
             height="150"
+            class="w-36 h-36 object-cover rounded-full shadow-lg border-4 border-white"
           >
         </div>
-        <div class="text-peanut-brown font-p22mackinac text-[26px] mb-3">{{ product.title }}</div>
-        <div class="text-sm font-rubik text-peanut-brown flex-grow">
-          {{ product.description }}
-        </div>
-        <div class="flex justify-between items-center mt-4">
-          <div class="text-peanut-brown font-bold font-bannertype" v-html="formatPrice('{{ product.price | money }}')">
-            {{ product.price | money }}
+
+        <!-- Content wrapper with flex-grow -->
+        <div class="mt-20 w-full flex flex-col flex-grow">
+          <div class="text-peanut-brown font-p22mackinac text-[26px] mb-3">
+            {{ product.title }}
           </div>
-          <form method="post" action="/cart/add" class="product-form" onsubmit="addToCart(event, this)">
-            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-            {% comment %} <input min="1" type="number" id="quantity" name="quantity" value="1"> {% endcomment %}
-            <button
-              type="submit"
-              class="w-[40px] h-[40px] bg-[#FD2B53] rounded-full flex items-center justify-center cursor-pointer"
+          <div class="text-sm font-rubik text-peanut-brown flex-grow">
+            {{ product.description }}
+          </div>
+
+          <!-- Price and add to cart button always at bottom -->
+          <div class="flex justify-between items-center mt-4">
+            <div
+              class="text-peanut-brown font-bold font-bannertype"
+              v-html="formatPrice('{{ product.price | money }}')"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                stroke-width="4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+              {{ product.price | money }}
+            </div>
+            <form method="post" action="/cart/add" class="product-form" onsubmit="addToCart(event, this)">
+              <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+              <button
+                type="submit"
+                class="w-[40px] h-[40px] bg-[#FD2B53] rounded-full flex items-center justify-center cursor-pointer"
               >
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </button>
-          </form>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     {% endfor %}
-
-    {% comment %}
-      {% for product in collections.all.products %}
-        <div class="product-card">
-          {{ product.title }}
-        </div>
-      {% endfor %}
-    {% endcomment %}
   </div>
 </div>
 
