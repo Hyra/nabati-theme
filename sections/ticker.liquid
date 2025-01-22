@@ -1,1 +1,25 @@
-ik ben een ticker
+<div class="relative overflow-hidden whitespace-nowrap mt-20">
+  <div class="font-bannertype text-8xl text-peanut-brown opacity-20 animate-ticker inline-block">
+    RENDANG BABI KETJAP TEMPEH SMOOR RENDANG BABI KETJAP TEMPEH SMOOR RENDANG BABI KETJAP TEMPEH SMOOR RENDANG BABI
+    KETJAP TEMPEH SMOOR RENDANG BABI KETJAP TEMPEH SMOOR
+  </div>
+  <div class="font-bannertype text-8xl text-peanut-brown opacity-20 animate-ticker inline-block">
+    RENDANG BABI KETJAP TEMPEH SMOOR RENDANG BABI KETJAP TEMPEH SMOOR RENDANG BABI KETJAP TEMPEH SMOOR RENDANG BABI
+    KETJAP TEMPEH SMOOR RENDANG BABI KETJAP TEMPEH SMOOR
+  </div>
+</div>
+
+<style>
+  @keyframes ticker {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-ticker {
+    animation: ticker 220s linear infinite;
+  }
+</style>
