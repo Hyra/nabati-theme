@@ -17,6 +17,9 @@ module.exports = {
         'bamboo-beige': '#F1E3BC',
         'coconut-white': '#FFFFFF',
       },
+      screens: {
+        short: { raw: '(max-height: 650px)' },
+      },
     },
   },
   plugins: [],

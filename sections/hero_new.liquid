@@ -1,5 +1,5 @@
 <div class="h-screen p-[25px]">
-  <header class="relative w-full h-full bg-white rounded-3xl p-10 overflow-hidden">
+  <header class="relative w-full h-full bg-white rounded-3xl p-5 sm:p-10 overflow-hidden">
     <!-- Background -->
     <div class="absolute inset-0 flex">
       <!-- Solid color (2/5th of the width) -->
@@ -11,7 +11,7 @@
       ></div>
     </div>
     <!-- Content -->
-    <div class="relative max-w-7xl mx-auto h-full flex items-end pb-[100px]">
+    <div class="relative max-w-7xl mx-auto h-full flex items-end pb-[100px] short:pb-0">
       <div class="absolute left-0 top-0">
         <img src="{{ 'nabati_big.png' | asset_url }}" alt="Nabati" width="150" height="40">
       </div>
@@ -25,13 +25,13 @@
         <div class="mt-6 flex space-x-4">
           <a
             href="javascript: smoothScroll('.products')"
-            class="bg-peanut-brown text-white text-md font-thin font-rubik py-2 px-10 rounded-full hover:bg-bamboo-beige hover:text-peanut-brown"
+            class="bg-peanut-brown text-white text-md font-thin font-rubik py-2 px-5 sm:px-10 rounded-full hover:bg-bamboo-beige hover:text-peanut-brown"
           >
             See products
           </a>
           <a
             href="/pages/about"
-            class="bg-transparent text-peanut-brown font-thin font-rubik py-2 px-10 border border-black rounded-full hover:bg-bamboo-beige hover:text-peanut-brown hover:border-bamboo-beige"
+            class="bg-transparent text-peanut-brown font-thin font-rubik py-2 px-5 sm:px-10 border border-black rounded-full hover:bg-bamboo-beige hover:text-peanut-brown hover:border-bamboo-beige"
           >
             About us
           </a>
