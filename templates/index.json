@@ -53,7 +53,7 @@
       "type": "image_and_text",
       "settings": {
         "image": "shopify://shop_images/city-street-at-night.jpg",
-        "leader_text": "Getting it",
+        "leader_text": "It's your choice",
         "header_text": "Whey Nabati?",
         "body_text": "<p>At Nabati, it’s all about flavor, tradition, and quality. Every dish is:<br/><br/>- <strong>Homemade with Care</strong> – Each recipe is crafted in small batches to ensure authentic taste and texture.<br/><br/>- <strong>Rooted in Tradition</strong> – Inspired by classic Indonesian dishes, we bring the same bold flavors to a plant-based menu.<br/><br/>- <strong>100% Vegan</strong> – Delicious, sustainable, and cruelty-free meals that everyone can enjoy.<br/><br/>Nabati isn’t just food—it’s a way to enjoy the richness of Indonesian cuisine in a more compassionate and sustainable way.</p>",
         "reverse_order": false
