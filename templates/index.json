@@ -25,7 +25,7 @@
         "image": "shopify://shop_images/itshyra_Indonesian_rice_table_shot_from_above_on_banana_leave_ef6434bd-d632-4d24-9e20-771a12d8d237_1.png",
         "leader_text": "What is Nabati?",
         "header_text": "Welcome",
-        "body_text": "At Nabati, we make homemade vegan versions of Indonesian dishes that taste just like the originals. Whether it’s a hearty rendang or smoky sateh, every dish is packed with the bold flavors Indonesia is known for. If you’re looking for delicious, plant-based meals with all the comfort of traditional recipes, you’re in the right place.",
+        "body_text": "<p>At Nabati, we make homemade vegan versions of Indonesian dishes that taste just like the originals. Whether it’s a hearty rendang or smoky sateh, every dish is packed with the bold flavors Indonesia is known for. If you’re looking for delicious, plant-based meals with all the comfort of traditional recipes, you’re in the right place.</p>",
         "reverse_order": false
       }
     },
@@ -45,7 +45,7 @@
         "image": "shopify://shop_images/merchant-taking-sale-with-chip-and-swipe-reader.jpg",
         "leader_text": "Explained",
         "header_text": "About me",
-        "body_text": "Hi, I’m Stef, the person behind Nabati. Growing up with Indonesian food, I’ve always loved the bold flavors and comforting dishes that are a big part of my culture. When I decided to go vegan, I didn’t want to lose the connection to these classic meals. That’s why I started recreating them, focusing on taste and texture that stays true to the originals. Nabati is my way of sharing these dishes with you—flavorful, homemade, and completely plant-based.",
+        "body_text": "<p>Hi, I’m Stef, the person behind Nabati. Growing up with Indonesian food, I’ve always loved the bold flavors and comforting dishes that are a big part of my culture. When I decided to go vegan, I didn’t want to lose the connection to these classic meals. That’s why I started recreating them, focusing on taste and texture that stays true to the originals. Nabati is my way of sharing these dishes with you—flavorful, homemade, and completely plant-based.</p>",
         "reverse_order": true
       }
     },
@@ -55,7 +55,7 @@
         "image": "shopify://shop_images/city-street-at-night.jpg",
         "leader_text": "Getting it",
         "header_text": "Whey Nabati?",
-        "body_text": "At Nabati, it’s all about flavor, tradition, and quality. Every dish is:\n\t•\tHomemade with Care – Each recipe is crafted in small batches to ensure authentic taste and texture.\n\t•\tRooted in Tradition – Inspired by classic Indonesian dishes, we bring the same bold flavors to a plant-based menu.\n\t•\t100% Vegan – Delicious, sustainable, and cruelty-free meals that everyone can enjoy.\n\nNabati isn’t just food—it’s a way to enjoy the richness of Indonesian cuisine in a more compassionate and sustainable way.",
+        "body_text": "<p>At Nabati, it’s all about flavor, tradition, and quality. Every dish is:</p><ul><li>Homemade with Care – Each recipe is crafted in small batches to ensure authentic taste and texture.</li></ul><p></p><ul><li>Rooted in Tradition – Inspired by classic Indonesian dishes, we bring the same bold flavors to a plant-based menu.</li></ul><p></p><ul><li>100% Vegan – Delicious, sustainable, and cruelty-free meals that everyone can enjoy.<br/><br/>Nabati isn’t just food—it’s a way to enjoy the richness of Indonesian cuisine in a more compassionate and sustainable way.</li></ul>",
         "reverse_order": false
       }
     },
