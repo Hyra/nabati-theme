@@ -9,13 +9,15 @@
 
     <!-- menu items -->
     <ul class="flex justify-end space-x-4 ml-auto">
-      {% for link in linklists['main-menu'].links %}
-        <li>
-          <a href="{{ link.url }}" class="font-serif text-red-700 hover:text-red-900 transition-colors duration-300">
-            {{- link.title -}}
-          </a>
-        </li>
-      {% endfor %}
+      {% comment %}
+        {% for link in linklists['main-menu'].links %}
+          <li>
+            <a href="{{ link.url }}" class="font-serif text-red-700 hover:text-red-900 transition-colors duration-300">
+              {{- link.title -}}
+            </a>
+          </li>
+        {% endfor %}
+      {% endcomment %}
       <li>
         <a
           onclick="openCartDrawer()"

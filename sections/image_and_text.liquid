@@ -1,4 +1,9 @@
-<div class="max-w-7xl mx-auto mt-20 px-5 xl:px-0 image-text-{{ section.id }}">
+<div
+  class="max-w-7xl mx-auto mt-20 px-5 xl:px-0 image-text-{{ section.id }}"
+  {% if section.settings.header_text == 'About me' %}
+    id="section-about"
+  {% endif %}
+>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
     <div class="flex items-center {% if section.settings.reverse_order %}lg:order-last{% endif %}">
       <img
@@ -12,7 +17,7 @@
     <div class="flex flex-col justify-center">
       <div class="text-red-900 font-serif text-base font-bold mb-3">{{ section.settings.leader_text }}</div>
       <div class="text-nabati-pink font-bannertype uppercase text-6xl">{{ section.settings.header_text }}</div>
-      <p class="font-rubik text-base text-peanut-brown">
+      <p class="font-rubik text-base text-peanut-brown leading-relaxed">
         {{ section.settings.body_text }}
       </p>
     </div>
