@@ -11,7 +11,9 @@
   "sections": {
     "hero_new": {
       "type": "hero_new",
-      "settings": {}
+      "settings": {
+        "hero_image": "shopify://shop_images/itshyra_indonesian_food_spread_out_on_a_table_with_banana_leave_a95bbce8-6753-45dd-a595-113fa5677d7d.png"
+      }
     },
     "header": {
       "type": "header",
@@ -33,7 +35,9 @@
     },
     "products": {
       "type": "products",
-      "settings": {}
+      "settings": {
+        "title": "Ready to eat?"
+      }
     },
     "image_text_2": {
       "type": "image_and_text",
@@ -91,7 +95,9 @@
     },
     "footer": {
       "type": "footer",
-      "settings": {}
+      "settings": {
+        "title": "Footer"
+      }
     }
   },
   "order": [
