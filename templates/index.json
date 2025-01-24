@@ -66,21 +66,21 @@
           "type": "step",
           "settings": {
             "step_title": "Order",
-            "step_description": "Order step description goes here. Order step description goes here. Order step description goes here. Order step description goes here. Order step description goes here."
+            "step_description": "Choose from the menu of authentic, homemade vegan Indonesian dishes. Pick your favorites, place your order, and let us take care of the rest!"
           }
         },
         "step_8njFDc": {
           "type": "step",
           "settings": {
             "step_title": "Shipping",
-            "step_description": "Shipping description goes here. Shipping description goes here. Shipping description goes here. Shipping description goes here."
+            "step_description": "We carefully pack and deliver your meals, ensuring they arrive fresh and ready to enjoy. You’ll be notified as soon as your order is on its way."
           }
         },
         "step_9gNz48": {
           "type": "step",
           "settings": {
             "step_title": "Enjoy",
-            "step_description": "Enjoy description goes here and stuff. Enjoy description goes here and stuff. Enjoy description goes here and stuff."
+            "step_description": "Heat up your meal, savor the bold flavors of Indonesia, and enjoy restaurant-quality vegan dishes from the comfort of your home."
           }
         }
       },
