@@ -34,7 +34,7 @@
             >
               {{ product.price | money }}
             </div>
-            <form method="post" action="/cart/add" class="product-form" onsubmit="addToCart(event, this)">
+            <form method="post" action="/cart/add" class="product-form">
               <input type="hidden" name="id" value="{{ product.variants.first.id }}">
               <button
                 type="submit"

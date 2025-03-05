@@ -23,7 +23,7 @@
           onclick="openCartDrawer()"
           class="cart-toggle font-serif text-red-700 hover:text-red-900 transition-colors duration-300"
         >
-          Cart ({{ cart.item_count }})
+          Cart (<span class="cart-count">{{ cart.item_count }}</span>)
         </a>
         {% comment %} <button onclick="openCartDrawer()" class="cart-toggle">Cart ({{ cart.item_count }})</button> {% endcomment %}
       </li>

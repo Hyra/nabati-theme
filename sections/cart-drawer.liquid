@@ -1,41 +1,396 @@
 <div id="cart-drawer" class="cart-drawer">
-  <div class="cart-drawer-header">
-    <h2>Your Cart</h2>
-    <button class="cart-drawer-close" onclick="closeCartDrawer()">×</button>
+  <div class="cart-drawer-header border-b border-gray-200 p-5 flex justify-between items-center">
+    <h2 class="font-bannertype text-2xl uppercase text-peanut-brown">Shopping Cart</h2>
+    <button class="cart-drawer-close text-2xl" onclick="closeCartDrawer()">&times;</button>
   </div>
 
   <div id="cart-drawer-content" class="cart-drawer-content">
     {% if cart.item_count > 0 %}
-      <form action="/cart" method="post" novalidate>
+      <div class="cart-items">
         {% for item in cart.items %}
-          <div class="cart-item">
-            {% if item.image %}
-              <img src="{{ item.image | img_url: '100x' }}" alt="{{ item.title | escape }}">
-            {% endif %}
+          <div
+            class="cart-item p-4 {% unless forloop.last %}border-b border-gray-200{% endunless %}"
+            data-line="{{ forloop.index }}"
+          >
+            <div class="flex gap-4">
+              <!-- Left: Image -->
+              {% if item.image %}
+                <div class="w-24 h-24 bg-gray-50">
+                  <img
+                    src="{{ item.image | img_url: '200x' }}"
+                    alt="{{ item.title | escape }}"
+                    width="96"
+                    height="96"
+                    class="w-full h-full object-contain"
+                  >
+                </div>
+              {% else %}
+                <div class="w-24 h-24 bg-gray-50"></div>
+              {% endif %}
 
-            <div class="cart-item-info">
-              <a href="{{ item.url }}">{{ item.title }}</a>
-              <div class="cart-item-price">{{ item.price | money }}</div>
-              <div class="cart-item-quantity">
-                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+              <!-- Middle: Product details -->
+              <div class="flex-1">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-medium">{{ item.title }}</h3>
+                    <div class="text-gray-600 mt-1">Price: {{ item.final_price | money }}</div>
+                  </div>
+                  <button
+                    type="button"
+                    onclick="removeItem({{ forloop.index }})"
+                    class="text-gray-400 hover:text-gray-600"
+                    aria-label="Remove item"
+                  >
+                    &times;
+                  </button>
+                </div>
+
+                <div class="quantity-selector inline-flex mt-3 border border-gray-200">
+                  <button
+                    type="button"
+                    class="quantity-decrease w-8 h-8 flex items-center justify-center text-gray-600"
+                    data-line="{{ forloop.index }}"
+                    data-action="decrease"
+                    aria-label="Decrease quantity"
+                  >
+                    &minus;
+                  </button>
+                  <input
+                    type="number"
+                    name="updates[]"
+                    value="{{ item.quantity }}"
+                    min="1"
+                    readonly
+                    class="w-10 h-8 text-center focus:outline-none border-x border-gray-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    data-line="{{ forloop.index }}"
+                    data-item-key="{{ item.key }}"
+                  >
+                  <button
+                    type="button"
+                    class="quantity-increase w-8 h-8 flex items-center justify-center text-gray-600"
+                    data-line="{{ forloop.index }}"
+                    data-action="increase"
+                    aria-label="Increase quantity"
+                  >
+                    &plus;
+                  </button>
+                </div>
               </div>
-              <button type="button" onclick="removeItem({{ forloop.index }})" class="remove">Remove</button>
+
+              <!-- Right: Total price -->
+              <div class="text-right">
+                <span
+                  class="font-medium item-total"
+                  data-line="{{ forloop.index }}"
+                  data-key="{{ item.key }}"
+                  data-price="{{ item.final_price }}"
+                >
+                  {{ item.final_line_price | money }}
+                </span>
+              </div>
             </div>
           </div>
         {% endfor %}
+      </div>
 
-        <div class="cart-footer">
-          <div class="cart-subtotal">Subtotal: {{ cart.total_price | money }}</div>
-          <button type="submit" name="update" class="update-cart">Update Cart</button>
-          <button type="submit" name="checkout" class="checkout">Checkout</button>
+      <div class="cart-footer px-4 py-6 border-t border-gray-200">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-lg">Subtotal</span>
+          <span class="text-lg font-medium">{{ cart.total_price | money }}</span>
         </div>
-      </form>
+
+        <p class="text-gray-500 text-sm mb-4">Shipping and taxes calculated at checkout.</p>
+
+        <button
+          type="button"
+          onclick="window.location.href='/checkout'"
+          class="w-full bg-peanut-brown hover:bg-nabati-pink text-white py-3 px-4 rounded font-medium transition duration-200 mb-3"
+        >
+          Checkout
+        </button>
+
+        <button
+          type="button"
+          onclick="closeCartDrawer()"
+          class="w-full text-center text-peanut-brown hover:text-nabati-pink py-2"
+        >
+          or Continue Shopping &rarr;
+        </button>
+      </div>
     {% else %}
-      <p>Your cart is empty</p>
-      <a href="/collections/all">Continue shopping</a>
+      <div class="flex-1 flex flex-col justify-center items-center p-5 text-center">
+        <p class="text-peanut-brown mb-5">Your cart is empty</p>
+        <button
+          type="button"
+          onclick="closeCartDrawer();"
+          class="text-nabati-pink hover:text-peanut-brown"
+        >
+          Continue shopping
+        </button>
+      </div>
     {% endif %}
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Setup event listeners for quantity buttons
+    setupQuantityControls();
+
+    // Initialize cart count in header
+    fetch('/cart.js')
+      .then((response) => response.json())
+      .then((cart) => {
+        updateCartCount(cart.item_count);
+      })
+      .catch((error) => console.error('Error fetching cart:', error));
+
+    // Intercept all add to cart form submissions to properly refresh the cart
+    interceptAddToCartForms();
+  });
+
+  function interceptAddToCartForms() {
+    // Listen for all form submissions
+    document.addEventListener('submit', function (event) {
+      const form = event.target;
+
+      // Check if this is an add to cart form
+      if (form.action && (form.action.includes('/cart/add') || form.getAttribute('action') === '/cart/add')) {
+        event.preventDefault();
+
+        // Submit the form using fetch
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('Product added to cart:', data);
+
+            // Always do a full cart refresh when a new product is added
+            refreshCart();
+
+            // Ensure quantity buttons work for newly added items
+            setTimeout(() => {
+              setupQuantityControls();
+            }, 200);
+
+            // Open the cart drawer
+            if (typeof openCartDrawer === 'function') {
+              openCartDrawer();
+            }
+          })
+          .catch((error) => {
+            console.error('Error adding to cart:', error);
+          });
+      }
+    });
+
+    // Also listen for AJAX add to cart requests
+    document.addEventListener('click', function (event) {
+      if (
+        event.target.matches('.ajax-add-to-cart, [data-add-to-cart]') ||
+        event.target.closest('.ajax-add-to-cart, [data-add-to-cart]')
+      ) {
+        // After a slight delay to allow the add to cart to process
+        setTimeout(() => {
+          refreshCart();
+        }, 500);
+      }
+    });
+  }
+
+  function setupQuantityControls() {
+    console.log('Setting up quantity controls');
+
+    const decreaseButtons = document.querySelectorAll('.quantity-decrease');
+    const increaseButtons = document.querySelectorAll('.quantity-increase');
+
+    console.log('Found decrease buttons:', decreaseButtons.length);
+    console.log('Found increase buttons:', increaseButtons.length);
+
+    decreaseButtons.forEach((button) => {
+      button.removeEventListener('click', handleQuantityDecrease);
+      button.addEventListener('click', handleQuantityDecrease);
+    });
+
+    increaseButtons.forEach((button) => {
+      button.removeEventListener('click', handleQuantityIncrease);
+      button.addEventListener('click', handleQuantityIncrease);
+    });
+  }
+
+  // Separate event handler functions to avoid issues with duplicate listeners
+  function handleQuantityDecrease() {
+    const line = this.getAttribute('data-line');
+    const input = document.querySelector(`input[data-line="${line}"]`);
+    const currentVal = parseInt(input.value);
+    if (currentVal > 1) {
+      console.log('decrease button clicked', line, currentVal - 1);
+      updateCartDrawerQuantity(line, currentVal - 1);
+    }
+  }
+
+  function handleQuantityIncrease() {
+    const line = this.getAttribute('data-line');
+    const input = document.querySelector(`input[data-line="${line}"]`);
+    const currentVal = parseInt(input.value);
+    console.log('increase button clicked', line, currentVal + 1);
+    updateCartDrawerQuantity(line, currentVal + 1);
+  }
+
+  // Make sure the refreshCart function properly reinitializes controls
+  function refreshCart() {
+    fetch('/cart?view=drawer')
+      .then((response) => response.text())
+      .then((html) => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newContent = doc.getElementById('cart-drawer-content');
+
+        if (newContent) {
+          document.getElementById('cart-drawer-content').innerHTML = newContent.innerHTML;
+
+          // Important: Setup quantity controls AFTER updating the content
+          console.log('Cart refreshed, setting up quantity controls');
+          setTimeout(() => {
+            // Add a slight delay to ensure the DOM is fully updated
+            setupQuantityControls();
+          }, 100);
+        }
+
+        // Also update the cart count
+        fetch('/cart.js')
+          .then((response) => response.json())
+          .then((cart) => {
+            updateCartCount(cart.item_count);
+          });
+      })
+      .catch((error) => console.error('Error refreshing cart:', error));
+  }
+
+  function updateCartDrawerQuantity(line, quantity) {
+    console.log('updateCartDrawerQuantity called with line:', line, 'quantity:', quantity);
+
+    const buttons = document.querySelectorAll(
+      `.quantity-decrease[data-line="${line}"], .quantity-increase[data-line="${line}"]`
+    );
+    buttons.forEach((button) => (button.disabled = true));
+
+    const input = document.querySelector(`input[data-line="${line}"]`);
+    if (input) input.value = quantity;
+
+    const itemKey = input ? input.getAttribute('data-item-key') : null;
+
+    return fetch('/cart/change.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(
+        itemKey ? { id: itemKey, quantity: quantity } : { line: parseInt(line), quantity: quantity }
+      ),
+    })
+      .then((response) => response.json())
+      .then((cart) => {
+        console.log('Cart updated:', cart);
+
+        // If the cart was empty before and now has items, refresh the entire cart
+        if (document.querySelector('.cart-items') === null && cart.item_count > 0) {
+          refreshCart();
+          return cart;
+        }
+
+        // Update line item price
+        if (itemKey) {
+          const updatedItem = cart.items.find((item) => item.key === itemKey);
+          if (updatedItem) {
+            // Try finding by both data-line and data-key for better compatibility
+            const priceElement =
+              document.querySelector(`.item-total[data-line="${line}"]`) ||
+              document.querySelector(`.item-total[data-key="${itemKey}"]`);
+
+            if (priceElement) {
+              // Use a safer way to format money that doesn't rely on regex
+              priceElement.textContent = formatMoney(updatedItem.final_line_price);
+              console.log('Updated line item price:', formatMoney(updatedItem.final_line_price));
+            } else {
+              console.error('Price element not found for line:', line, 'key:', itemKey);
+            }
+          } else {
+            console.error('Updated item not found in cart response');
+          }
+        } else {
+          // As a fallback, if we don't have the item key, try to find the item by line index
+          if (cart.items.length >= line) {
+            const updatedItem = cart.items[line - 1]; // line is 1-indexed, array is 0-indexed
+            const priceElement = document.querySelector(`.item-total[data-line="${line}"]`);
+            if (priceElement) {
+              priceElement.textContent = formatMoney(updatedItem.final_line_price);
+            }
+          }
+        }
+
+        // Update cart subtotal
+        const subtotal = document.querySelector('.cart-footer .flex span:last-child');
+        if (subtotal) {
+          subtotal.textContent = formatMoney(cart.total_price);
+        }
+
+        updateCartCount(cart.item_count);
+
+        buttons.forEach((button) => (button.disabled = false));
+
+        return cart;
+      })
+      .catch((error) => {
+        console.error('Error updating cart:', error);
+        buttons.forEach((button) => (button.disabled = false));
+        refreshCart();
+      });
+  }
+
+  function removeItem(line) {
+    updateCartDrawerQuantity(line, 0).then(() => {
+      // If the item was successfully removed, refresh the cart
+      refreshCart();
+    });
+  }
+
+  function updateCartCount(count) {
+    // Find all cart count elements (could be in different places depending on theme)
+    const cartCountElements = document.querySelectorAll('.cart-count, .cart-item-count, [data-cart-count]');
+
+    // Update all instances of the cart count
+    cartCountElements.forEach((element) => {
+      // If it's just a number
+      if (element.tagName !== 'INPUT') {
+        element.textContent = count;
+      }
+
+      // If it includes text like "Cart (X)"
+      const cartText = element.textContent || '';
+      if (cartText.includes('Cart')) {
+        element.textContent = cartText.replace(/Cart\s*\(\d+\)/, `Cart (${count})`);
+      }
+    });
+  }
+
+  function formatMoney(cents) {
+    if (typeof cents === 'string') cents = cents.replace('.', '');
+    let value = parseInt(cents || 0, 10);
+    if (isNaN(value)) {
+      console.error('Invalid price value:', cents);
+      value = 0;
+    }
+    const dollars = Math.floor(value / 100);
+    const cents_part = (value % 100).toString().padStart(2, '0');
+    return `$${dollars}.${cents_part}`;
+  }
+
+  // Add global event listener for cart:refresh events
+  document.addEventListener('cart:refresh', function (event) {
+    refreshCart();
+  });
+</script>
 
 {% schema %}
 {
