@@ -29,7 +29,7 @@
           <!-- Price and add to cart button always at bottom -->
           <div class="flex justify-between items-center mt-4">
             <div
-              class="text-peanut-brown font-bold font-bannertype"
+              class="text-peanut-brown font-bold font-bannertype text-4xl"
               v-html="formatPrice('{{ product.price | money }}')"
             >
               {{ product.price | money }}
@@ -74,7 +74,7 @@
         const [whole, decimal] = amount.split(',');
 
         return `
-          <span class="text-[28px]">€</span><span class="text-[56px]">${whole}</span><span class="text-[28px]">,${decimal}</span>
+          <span class="text-[34px] font-bold">€</span><span class="text-[68px] font-bold">${whole}</span><span class="text-[34px] font-bold">,${decimal}</span>
         `;
       },
     },
