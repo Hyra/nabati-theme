@@ -77,17 +77,15 @@
                 </div>
               </div>
 
-              <!-- Right: Total price -->
-              <div class="text-right">
-                <span
-                  class="font-medium item-total"
-                  data-line="{{ forloop.index }}"
-                  data-key="{{ item.key }}"
-                  data-price="{{ item.final_price }}"
-                >
-                  {{ item.final_line_price | money }}
-                </span>
-              </div>
+              <!-- Hidden price data for JS functionality -->
+              <span
+                class="hidden item-total"
+                data-line="{{ forloop.index }}"
+                data-key="{{ item.key }}"
+                data-price="{{ item.final_price }}"
+              >
+                {{ item.final_line_price | money }}
+              </span>
             </div>
           </div>
         {% endfor %}
@@ -170,11 +168,6 @@
             // Always do a full cart refresh when a new product is added
             refreshCart();
 
-            // Ensure quantity buttons work for newly added items
-            setTimeout(() => {
-              setupQuantityControls();
-            }, 200);
-
             // Open the cart drawer
             if (typeof openCartDrawer === 'function') {
               openCartDrawer();
@@ -224,6 +217,12 @@
   function handleQuantityDecrease() {
     const line = this.getAttribute('data-line');
     const input = document.querySelector(`input[data-line="${line}"]`);
+    if (!input) {
+      console.error('Input not found for line:', line);
+      refreshCart();
+      return;
+    }
+
     const currentVal = parseInt(input.value);
     if (currentVal > 1) {
       console.log('decrease button clicked', line, currentVal - 1);
@@ -234,6 +233,12 @@
   function handleQuantityIncrease() {
     const line = this.getAttribute('data-line');
     const input = document.querySelector(`input[data-line="${line}"]`);
+    if (!input) {
+      console.error('Input not found for line:', line);
+      refreshCart();
+      return;
+    }
+
     const currentVal = parseInt(input.value);
     console.log('increase button clicked', line, currentVal + 1);
     updateCartDrawerQuantity(line, currentVal + 1);
@@ -253,10 +258,14 @@
 
           // Important: Setup quantity controls AFTER updating the content
           console.log('Cart refreshed, setting up quantity controls');
-          setTimeout(() => {
-            // Add a slight delay to ensure the DOM is fully updated
-            setupQuantityControls();
-          }, 100);
+
+          // Multiple attempts to setup controls to ensure they are initialized
+          setupQuantityControls();
+
+          // Add delays with multiple attempts to ensure controls are set up properly
+          setTimeout(() => setupQuantityControls(), 100);
+          setTimeout(() => setupQuantityControls(), 300);
+          setTimeout(() => setupQuantityControls(), 500);
         }
 
         // Also update the cart count
@@ -313,10 +322,15 @@
               priceElement.textContent = formatMoney(updatedItem.final_line_price);
               console.log('Updated line item price:', formatMoney(updatedItem.final_line_price));
             } else {
+              // If price element not found, try refreshing the cart and try again
               console.error('Price element not found for line:', line, 'key:', itemKey);
+              refreshCart();
+              return cart;
             }
           } else {
             console.error('Updated item not found in cart response');
+            refreshCart();
+            return cart;
           }
         } else {
           // As a fallback, if we don't have the item key, try to find the item by line index
@@ -325,7 +339,17 @@
             const priceElement = document.querySelector(`.item-total[data-line="${line}"]`);
             if (priceElement) {
               priceElement.textContent = formatMoney(updatedItem.final_line_price);
+            } else {
+              // If price element not found, refresh the cart
+              console.error('Price element not found for line:', line);
+              refreshCart();
+              return cart;
             }
+          } else {
+            // If line index is out of range, refresh the cart
+            console.error('Line index out of range:', line, 'cart items:', cart.items.length);
+            refreshCart();
+            return cart;
           }
         }
 
