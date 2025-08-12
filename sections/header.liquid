@@ -21,7 +21,7 @@
       <li>
         <button
           onclick="openCartDrawer()"
-          class="cart-toggle flex items-center gap-2 bg-nabati-pink hover:bg-peanut-brown text-white pl-4 pr-2 py-2 rounded-full transition-all duration-300 hover:scale-105 font-rubik"
+          class="cart-toggle flex items-center gap-2 bg-nabati-pink hover:bg-peanut-brown text-white px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 font-rubik"
           aria-label="Open shopping cart with {{ cart.item_count }} items"
         >
           <!-- Shopping Cart Icon -->
@@ -34,9 +34,11 @@
           <span class="font-medium">Cart</span>
           
           <!-- Item count inside button with bamboo beige background -->
-          <span class="bg-bamboo-beige text-peanut-brown font-bold px-2.5 py-1 rounded-full min-w-[28px] text-center text-sm ml-1">
-            <span class="cart-count">{{ cart.item_count }}</span>
-          </span>
+          {% if cart.item_count > 0 %}
+            <span class="bg-bamboo-beige text-peanut-brown font-bold px-2.5 py-1 rounded-full min-w-[28px] text-center text-sm ml-1 cart-count-badge">
+              <span class="cart-count">{{ cart.item_count }}</span>
+            </span>
+          {% endif %}
         </button>
       </li>
     </ul>

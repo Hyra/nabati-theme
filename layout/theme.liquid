@@ -97,6 +97,25 @@
         cartCounts.forEach(el => {
           el.textContent = count;
         });
+        
+        // Show/hide the cart badge based on count
+        const cartButton = document.querySelector('.cart-toggle');
+        const cartBadge = document.querySelector('.cart-count-badge');
+        
+        if (count > 0) {
+          // If badge doesn't exist but we have items, create it
+          if (!cartBadge && cartButton) {
+            const newBadge = document.createElement('span');
+            newBadge.className = 'bg-bamboo-beige text-peanut-brown font-bold px-2.5 py-1 rounded-full min-w-[28px] text-center text-sm ml-1 cart-count-badge';
+            newBadge.innerHTML = `<span class="cart-count">${count}</span>`;
+            cartButton.appendChild(newBadge);
+          }
+        } else {
+          // If count is 0, remove the badge
+          if (cartBadge) {
+            cartBadge.remove();
+          }
+        }
       }
 
       function openCartDrawer() {
@@ -449,10 +468,8 @@
               })
               .then((response) => response.json())
               .then((cart) => {
-                // Update cart count if you have one
-                if (document.querySelector('.cart-count')) {
-                  document.querySelector('.cart-count').textContent = cart.item_count;
-                }
+                // Update cart count - this will also handle badge visibility
+                updateCartCount(cart.item_count);
 
                 // Update the cart drawer
                 updateCartDrawer(cart);
