@@ -26,6 +26,23 @@
             {{ product.description }}
           </div>
 
+          <!-- Serving information -->
+          <div class="text-sm font-rubik text-peanut-brown/80 mt-3 leading-relaxed">
+            <span class="font-bold text-peanut-brown">150g package</span> - 
+            {% case forloop.index %}
+              {% when 1 %}
+                Enough for a filling dish. Just add rice and your favorite veggies!
+              {% when 2 %}
+                Serves a hearty meal. Perfect with steamed rice and fresh vegetables!
+              {% when 3 %}
+                Ready to heat and serve. Enjoy with rice for a complete meal!
+              {% when 4 %}
+                Makes a satisfying dish. Great with rice, noodles, or your choice of sides!
+              {% else %}
+                Enough for a filling dish. Just add rice and your favorite veggies!
+            {% endcase %}
+          </div>
+
           <!-- Price and add to cart button always at bottom -->
           <div class="flex justify-between items-center mt-4">
             <div
