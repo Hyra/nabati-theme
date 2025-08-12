@@ -21,10 +21,22 @@
       <li>
         <button
           onclick="openCartDrawer()"
-          class="cart-toggle font-serif text-red-700 hover:text-red-900 transition-colors duration-300 cursor-pointer"
-          aria-label="Open shopping cart"
+          class="cart-toggle flex items-center gap-2 bg-nabati-pink hover:bg-peanut-brown text-white pl-4 pr-2 py-2 rounded-full transition-all duration-300 hover:scale-105 font-rubik"
+          aria-label="Open shopping cart with {{ cart.item_count }} items"
         >
-          Cart (<span class="cart-count">{{ cart.item_count }}</span>)
+          <!-- Shopping Cart Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          
+          <span class="font-medium">Cart</span>
+          
+          <!-- Item count inside button with bamboo beige background -->
+          <span class="bg-bamboo-beige text-peanut-brown font-bold px-2.5 py-1 rounded-full min-w-[28px] text-center text-sm ml-1">
+            <span class="cart-count">{{ cart.item_count }}</span>
+          </span>
         </button>
       </li>
     </ul>

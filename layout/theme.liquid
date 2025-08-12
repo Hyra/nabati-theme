@@ -91,6 +91,14 @@
     {% section 'cart-drawer' %}
 
     <script defer>
+      function updateCartCount(count) {
+        // Update all cart count displays
+        const cartCounts = document.querySelectorAll('.cart-count');
+        cartCounts.forEach(el => {
+          el.textContent = count;
+        });
+      }
+
       function openCartDrawer() {
         document.getElementById('cart-drawer').classList.add('open');
         document.querySelector('.cart-overlay').classList.add('open');
@@ -118,10 +126,8 @@
           .then((cart) => {
             updateCartDrawer(cart);
 
-            // Update cart count if you have a cart count element
-            if (document.querySelector('.cart-count')) {
-              document.querySelector('.cart-count').textContent = cart.item_count;
-            }
+            // Update cart count
+            updateCartCount(cart.item_count);
           })
           .catch((error) => {
             console.error('Error removing item:', error);
@@ -144,10 +150,8 @@
             // Instead of refreshing the entire cart drawer, just update the necessary elements
             updateCartWithoutRefresh(cart, line, quantity);
 
-            // Update cart count if you have a cart count element
-            if (document.querySelector('.cart-count')) {
-              document.querySelector('.cart-count').textContent = cart.item_count;
-            }
+            // Update cart count
+            updateCartCount(cart.item_count);
 
             return cart;
           })
@@ -548,10 +552,8 @@
             })
             .then((response) => response.json())
             .then((cart) => {
-              // Update cart count if you have one
-              if (document.querySelector('.cart-count')) {
-                document.querySelector('.cart-count').textContent = cart.item_count;
-              }
+              // Update cart count
+              updateCartCount(cart.item_count);
 
               // Update the cart drawer
               updateCartDrawer(cart);
@@ -663,10 +665,8 @@
             })
             .then((response) => response.json())
             .then((cart) => {
-              // Update cart count if you have one
-              if (document.querySelector('.cart-count')) {
-                document.querySelector('.cart-count').textContent = cart.item_count;
-              }
+              // Update cart count
+              updateCartCount(cart.item_count);
 
               // Update the cart drawer
               updateCartDrawer(cart);
