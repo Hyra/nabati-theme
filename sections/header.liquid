@@ -19,13 +19,13 @@
         {% endfor %}
       {% endcomment %}
       <li>
-        <a
+        <button
           onclick="openCartDrawer()"
-          class="cart-toggle font-serif text-red-700 hover:text-red-900 transition-colors duration-300"
+          class="cart-toggle font-serif text-red-700 hover:text-red-900 transition-colors duration-300 cursor-pointer"
+          aria-label="Open shopping cart"
         >
           Cart (<span class="cart-count">{{ cart.item_count }}</span>)
-        </a>
-        {% comment %} <button onclick="openCartDrawer()" class="cart-toggle">Cart ({{ cart.item_count }})</button> {% endcomment %}
+        </button>
       </li>
     </ul>
   </nav>

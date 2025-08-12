@@ -27,7 +27,50 @@
     {{ content_for_header }}
 
     {{ 'styles.css' | asset_url | stylesheet_tag }}
-    <link rel="stylesheet" href="{{ 'style.css' | file_url }}">
+    
+    <style>
+      @font-face {
+        font-family: 'BannerType2';
+        src: url('{{ "bannertype2.woff" | asset_url }}') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'p22_mackinac_probold';
+        src: url('{{ "mackinac-bold-webfont.woff2" | asset_url }}') format('woff2'),
+             url('{{ "mackinac-bold-webfont.woff" | asset_url }}') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Rubik';
+        src: url('{{ "Rubik-Regular.woff2" | asset_url }}') format('woff2'),
+             url('{{ "Rubik-Regular.woff" | asset_url }}') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Rubik';
+        src: url('{{ "Rubik-Bold.woff2" | asset_url }}') format('woff2'),
+             url('{{ "Rubik-Bold.woff" | asset_url }}') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Rubik';
+        src: url('{{ "Rubik-Medium.woff2" | asset_url }}') format('woff2'),
+             url('{{ "Rubik-Medium.woff" | asset_url }}') format('woff');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
 
@@ -186,28 +229,22 @@
       }
 
       function formatMoney(cents) {
-        // Simplify the money formatting to use a direct approach
+        // Standardized money formatting for EUR
         const currencySymbol = '€';
 
         if (typeof cents === 'string') {
           cents = cents.replace('.', '');
         }
-
-        function formatWithDelimiters(number, precision) {
-          if (isNaN(number) || number === null) {
-            return 0;
-          }
-
-          number = (number / 100.0).toFixed(precision);
-
-          const parts = number.split('.');
-          const dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-          const cents = parts[1] ? '.' + parts[1] : '';
-
-          return dollars + cents;
+        
+        let value = parseInt(cents || 0, 10);
+        if (isNaN(value)) {
+          console.error('Invalid price value:', cents);
+          value = 0;
         }
-
-        return currencySymbol + formatWithDelimiters(cents, 2);
+        
+        const euros = Math.floor(value / 100);
+        const cents_part = (value % 100).toString().padStart(2, '0');
+        return `${currencySymbol}${euros},${cents_part}`;
       }
 
       function updateCartDrawer(cart) {
@@ -237,6 +274,9 @@
               cartItemElements.forEach((item, index) => {
                 item.setAttribute('data-line', index + 1);
               });
+              
+              // Re-attach event listeners for quantity controls after updating content
+              attachQuantityControlListeners();
             }
           })
           .catch((error) => {
@@ -244,8 +284,17 @@
           });
       }
 
-      // Listen for clicks on the quantity adjustment buttons
-      document.addEventListener('click', function (event) {
+      // Function to attach event listeners for quantity controls
+      function attachQuantityControlListeners() {
+        // Remove old listeners and attach new ones using event delegation
+        const cartDrawer = document.getElementById('cart-drawer');
+        if (!cartDrawer) return;
+        
+        // Use event delegation for better performance
+        cartDrawer.addEventListener('click', handleQuantityControlClick);
+      }
+      
+      function handleQuantityControlClick(event) {
         // Handle quantity decrease button
         if (event.target.classList.contains('quantity-decrease') || event.target.closest('.quantity-decrease')) {
           const button = event.target.classList.contains('quantity-decrease')
@@ -316,6 +365,11 @@
             button.classList.remove('opacity-50');
           });
         }
+      }
+      
+      // Initialize quantity control listeners on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        attachQuantityControlListeners();
       });
 
       // Handle input changes directly
@@ -514,21 +568,24 @@
       // Close cart drawer when clicking on the overlay
       document.querySelector('.cart-overlay').addEventListener('click', closeCartDrawer);
 
+      // Define smoothScroll function globally before it's used
+      window.smoothScroll = function(element) {
+        const targetElement = document.querySelector(element);
+        if (targetElement) {
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: elementPosition - 200,
+            behavior: 'smooth',
+          });
+        }
+      }
+
       document.addEventListener('DOMContentLoaded', function () {
         const headerSection = document.querySelector('div[id^="shopify-section-"][id$="__header"]');
         if (headerSection) {
           headerSection.classList.add('sticky', 'top-0', 'bg-[#FFF2DC]', 'z-50');
         }
       });
-
-      function smoothScroll(element) {
-        const targetElement = document.querySelector(element);
-        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: elementPosition - 200,
-          behavior: 'smooth',
-        });
-      }
 
       // Handle "Buy Now" buttons
       document.addEventListener('click', function (e) {
